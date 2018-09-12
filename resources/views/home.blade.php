@@ -163,14 +163,14 @@
                         <input type="radio" class="form-check-input" id="reason-3" name="reason" value="3">
                         <label class="form-check-label" for="reason-3">в гарантийном талоне не указан IMEI</label>
                     </div>
-                    <div class="form-check">
-                        <input type="radio" class="form-check-input" id="reason-4" name="reason" value="4">
-                        <label class="form-check-label" for="reason-4">в гарантийном талоне не указана модель смартфона</label>
-                    </div>
-                    <div class="form-check">
-                        <input type="radio" class="form-check-input" id="reason-5" name="reason" value="5">
-                        <label class="form-check-label" for="reason-5">в гарантийном талоне не указано место продажи</label>
-                    </div>
+                    {{--<div class="form-check">--}}
+                        {{--<input type="radio" class="form-check-input" id="reason-4" name="reason" value="4">--}}
+                        {{--<label class="form-check-label" for="reason-4">в гарантийном талоне не указана модель смартфона</label>--}}
+                    {{--</div>--}}
+                    {{--<div class="form-check">--}}
+                        {{--<input type="radio" class="form-check-input" id="reason-5" name="reason" value="5">--}}
+                        {{--<label class="form-check-label" for="reason-5">в гарантийном талоне не указано место продажи</label>--}}
+                    {{--</div>--}}
                     <div class="form-check">
                         <input type="radio" class="form-check-input" id="reason-6" name="reason" value="6">
                         <label class="form-check-label" for="reason-6">в гарантийном талоне не указана дата продажи</label>
@@ -247,6 +247,58 @@
                 @else
                     <div class="modal-footer" style="justify-content: center!important;">
                         <a class="btn btn-danger text-white" id="saveParticipant">Сохранить данные</a>
+                        <a class="btn btn-outline-danger waves-effect" data-dismiss="modal">Закрыть</a>
+                    </div>
+                @endif
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="editApprovedModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-id="">
+        <div class="modal-dialog modal-notify modal-primary modal-dialog-centered modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header bg-danger">
+                    <p class="heading lead">Редактировать </p>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true" class="white-text">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row mb-xl-3">
+                        <div class="col-xl-10 mx-xl-auto mb-xl-5">
+                            <label class="d-inline-block text-uppercase"><strong>Статус:</strong></label>
+                            <label class="d-inline-block text-uppercase ml-4" data-status></label>
+                        </div>
+                        <div class="col-xl-10 p-0 mx-xl-auto mb-xl-5 text-center">
+                            <img src="" alt="" class="img-fluid" id="approvedParticipantImage">
+                        </div>
+                        <div class="col-xl-10 p-0 mx-xl-auto mb-xl-5 text-center">
+                            <button class="btn btn-sm btn-danger rounded-0" id="rotateApprovedParticipantImage90">Повернуть на 90&deg;</button>
+                            <button class="btn btn-sm btn-danger rounded-0" id="rotateApprovedParticipantImage180">Повернуть на 180&deg;</button>
+                            <button class="btn btn-sm btn-danger rounded-0" id="rotateApprovedParticipantImage270">Повернуть на 270&deg;</button>
+                            <button class="btn btn-sm btn-danger rounded-0" id="rotateApprovedParticipantImage360">Сбросить&deg;</button>
+                        </div>
+                        <div class="col-xl-10 mx-xl-auto">
+                            <label for="approvedParticipantName">Имя промодерированного</label>
+                            <input type="text" id="approvedParticipantName" name="approvedParticipantName" class="form-control">
+                        </div>
+                        <div class="col-xl-10 mx-xl-auto">
+                            <label for="approvedParticipantEmail">E-mail</label>
+                            <input type="text" id="approvedParticipantEmail" name="approvedParticipantEmail" class="form-control">
+                        </div>
+                        <div class="col-xl-10 mx-xl-auto">
+                            <label for="approvedParticipantAddress">Адрес</label>
+                            <input type="text" id="approvedParticipantAddress" name="approvedParticipantAddress" class="form-control">
+                        </div>
+                        <div class="col-xl-10 mx-xl-auto">
+                            <label for="approvedParticipantPhone">Номер телефона</label>
+                            <input type="text" id="approvedParticipantPhone" name="approvedParticipantPhone" class="form-control">
+                        </div>
+                    </div>
+                </div>
+                @if(Auth::user()->id === 8)
+                @else
+                    <div class="modal-footer" style="justify-content: center!important;">
+                        <a class="btn btn-danger text-white" id="saveApprovedParticipant">Сохранить данные</a>
                         <a class="btn btn-outline-danger waves-effect" data-dismiss="modal">Закрыть</a>
                     </div>
                 @endif

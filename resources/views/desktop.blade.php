@@ -372,14 +372,14 @@
                                                 <div class="col-xl-6 d-flex align-content-center">
                                                     <div class="row m-xl-0 p-xl-0 align-self-center m-xl-auto">
                                                         <div class="col-xl-12 text-left">
-                                                            <p class="h5 font-weight-bold">Дата проведения розыгрыша:</p>
-                                                            <p class="h5 font-weight-light">07 сентября 2018 года</p>
+                                                            <p class="h5 font-weight-bold">Игровой код № 00005</p>
+                                                            <p class="h5 font-weight-light">Секретарева А. Ш.</p>
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div class="col-xl-6 m-0 p-0">
                                                     <div class="embed-responsive embed-responsive-16by9 z-depth-2">
-                                                        <video src="{{asset('video/huaweitravel.mp4')}}" controls controlsList="nodownload noremoteplayback nomutebutton" preload="metadata"></video>
+                                                        <video src="{{asset('video/first_lottery.mp4')}}" controls controlsList="nodownload noremoteplayback nomutebutton" preload="metadata"></video>
                                                     </div>
                                                 </div>
                                             </div>
@@ -551,7 +551,65 @@
             </div>
             <div class="row mt-xl-5 p-xl-0">
                 <div class="col-xl-8 mx-xl-auto">
-                    <img src="{{asset('images/site/partners-logos.png')}}" alt="" class="img-fluid">
+                    <div class="row m-0 p-0 d-flex justify-content-between">
+                        <div class="col-xl-2 p-0 d-flex justify-content-center align-content-center">
+                            <a href="https://www.velcom.by/ru/private/support/companycenters">
+                            <img src="{{asset('images/site/partners/velcom.png')}}" alt="" class="align-self-center m-auto img-fluid" data-partner >
+                            </a>
+                        </div>
+                        <div class="col-xl-2 p-0 d-flex justify-content-center align-content-center">
+                            <a href="https://www.mts.by/help/offices/offices_table.php">
+                            <img src="{{asset('images/site/partners/mts.png')}}" alt="" class="align-self-center m-auto img-fluid" data-partner >
+                            </a>
+                        </div>
+                        <div class="col-xl-2 p-0 d-flex justify-content-center align-content-center">
+                            <a href="https://5element.by/shops">
+                            <img src="{{asset('images/site/partners/5element.png')}}" alt="" class="align-self-center m-auto img-fluid" data-partner >
+                            </a>
+                        </div>
+                        <div class="col-xl-2 p-0 d-flex justify-content-center align-content-center">
+                            <a href="https://euroset.by/">
+                            <img src="{{asset('images/site/partners/evroset.png')}}" alt="" class="align-self-center m-auto img-fluid" data-partner>
+                            </a>
+                        </div>
+                        <div class="col-xl-2 p-0 d-flex justify-content-center align-content-center">
+                            <a href="https://nsv.by/salons/">
+                            <img src="{{asset('images/site/partners/nasviazi.png')}}" alt="" class="align-self-center m-auto img-fluid" data-partner>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="row m-0 p-0">
+                        <div class="col-xl-2 p-3 d-flex justify-content-center align-content-center">
+                            <a href="https://www.svyaznoy.by/info/shop-address/">
+                            <img src="{{asset('images/site/partners/sviaznoy.png')}}" alt="" class="align-self-center m-auto img-fluid" data-partner>
+                            </a>
+                        </div>
+                        <div class="col-xl-2 p-3 d-flex justify-content-center align-content-center">
+                            <a href="https://alloplus.by/shops/">
+                            <img src="{{asset('images/site/partners/allo.png')}}" alt="" class="align-self-center m-auto img-fluid" data-partner>
+                            </a>
+                        </div>
+                        <div class="col-xl-2 p-3 d-flex justify-content-center align-content-center">
+                            <a href="https://sila.by/shops">
+                            <img src="{{asset('images/site/partners/electrosila.png')}}" alt="" class="align-self-center m-auto img-fluid" data-partner>
+                            </a>
+                        </div>
+                        <div class="col-xl-2 p-3 d-flex justify-content-center align-content-center">
+                            <a href="https://life.com.by/private/salons">
+                            <img src="{{asset('images/site/partners/life4g_logo_new_back.png')}}" alt="" class="align-self-center m-auto img-fluid" data-partner>
+                            </a>
+                        </div>
+                        <div class="col-xl-2 p-3 d-flex justify-content-center align-content-center">
+                            <a href="https://www.korona.by/">
+                            <img src="{{asset('images/site/partners/korona.png')}}" alt="" class="align-self-center m-auto img-fluid" data-partner>
+                            </a>
+                        </div>
+                        <div class="col-xl-2 p-3 d-flex justify-content-center align-content-center">
+                            <a href="https://e-tehno.by/torgovaya-set.html">
+                            <img src="{{asset('images/site/partners/techno.png')}}" alt="" class="align-self-center m-auto img-fluid" data-partner>
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

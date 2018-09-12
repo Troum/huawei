@@ -14,7 +14,7 @@ class AddErrorMistakeParticipants extends Migration
 	public function up()
 	{
 		Schema::table('mistake_participants', function (Blueprint $table) {
-			$table->string('moderator');
+			$table->string('error');
 		});
 	}
 
@@ -26,7 +26,7 @@ class AddErrorMistakeParticipants extends Migration
 	public function down()
 	{
 		Schema::table('mistake_participants', function (Blueprint $table) {
-			$table->dropColumn('moderator');
+			$table->dropColumn('error');
 		});
 	}
 }

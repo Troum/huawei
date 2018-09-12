@@ -499,13 +499,13 @@ class HomeController extends Controller
 			switch ($result['status'])
 			{
 				case 'QUEUED':
-					return response()->json(['status' => 'Сообщение в очереди на отправку'], Response::HTTP_OK);
+					return response()->json(['status' => 'Сообщение в очереди на отправку', 'participant' => $approved], Response::HTTP_OK);
 				case 'SENT':
-					return response()->json(['status' => 'Сообщение отправлено'], Response::HTTP_OK);
+					return response()->json(['status' => 'Сообщение отправлено', 'participant' => $approved], Response::HTTP_OK);
 				case 'DELIVERED':
-					return response()->json(['status' => 'Сообщение доставлено'], Response::HTTP_OK);
+					return response()->json(['status' => 'Сообщение доставлено', 'participant' => $approved], Response::HTTP_OK);
 				case 'FAILED':
-					return response()->json(['status' => 'Сообщение не доставлено'], Response::HTTP_OK);
+					return response()->json(['status' => 'Сообщение не доставлено', 'participant' => $approved], Response::HTTP_OK);
 			}
 		} elseif ($result && isset($result['error'])) {
 			return response()->json(['error' => $result['error']]);

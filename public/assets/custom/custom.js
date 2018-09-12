@@ -5,4 +5,3 @@ function checkPhone(phone) {
     let m;
     return (m = velcom.exec(phone)) !== null || (m = mts.exec(phone)) !== null || (m = life.exec(phone)) !== null;
 }
-

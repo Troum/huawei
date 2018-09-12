@@ -1,5 +1,5 @@
-$().ready(function () {
 
+$().ready(function () {
 
     $(document).on('click', '[data-toggle="lightbox"]', function(event) {
         event.preventDefault();
@@ -22,6 +22,7 @@ $().ready(function () {
         info = $('#modalInfoRight'),
         decline = $('#modalDecline'),
         edit = $('#editModal'),
+        approved = $('#editApprovedModal'),
         uri = window.location.toString(),
         fastSearch = $('#fast-search-input'),
         baseSearch = $('#search-input'),
@@ -46,7 +47,20 @@ $().ready(function () {
             'email': $('#participantEmail'),
             'save': $('#saveParticipant')
         },
-        table = 'registered';
+        approvedEditing = {
+            'name': $('#approvedParticipantName'),
+            'address': $('#approvedParticipantAddress'),
+            'phone': $('#approvedParticipantPhone'),
+            'email': $('#approvedParticipantEmail'),
+            'save': $('#saveApprovedParticipant')
+        },
+        table = 'registered',
+        rotate = {
+            'rotate90': $('#rotateApprovedParticipantImage90'),
+            'rotate180': $('#rotateApprovedParticipantImage180'),
+            'rotate270': $('#rotateApprovedParticipantImage270'),
+            'cancel': $('#rotateApprovedParticipantImage360')
+        };
 
     if (uri.indexOf("?") > 0) {
         let clear = uri.substring(0, uri.indexOf("?"));
@@ -57,7 +71,7 @@ $().ready(function () {
        $(this).on('click', function (e) {
            e.preventDefault();
            table = $(this).data('table');
-       })
+       });
     });
 
     function refresh(link, table) {
@@ -157,33 +171,9 @@ $().ready(function () {
         });
     });
 
-    body.on('click','[data-approved]', function () {
-        let id = $(this).data('id');
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
-        $.ajax({
-            url: '/home/approved/' + id,
-            data:{id: id},
-            cache: false,
-            contentType: false,
-            processData: false,
-            dataType: 'JSON',
-        }).done(function (response) {
-            modal.modal('show');
-            modal.find('#imei').text(response.imei);
-            modal.find('#image').attr('src', response.src);
-            modal.find('[data-toggle="lightbox"]').attr('href', response.src);
-        }).fail(function () {
-            toastr.alert('Невозможно отобразить');
-        });
-    });
-
-
     body.on('click','[data-declined]', function () {
         let id = $(this).data('id');
+
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -355,27 +345,6 @@ $().ready(function () {
         });
     });
 
-    body.on('click', '[data-check]', function () {
-        let id = $(this).data('check');
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
-        $.ajax({
-            url: '/home/check/' + id,
-            data:{id: id},
-            cache: false,
-            contentType: false,
-            processData: false,
-            dataType: 'JSON',
-        }).done(function (response) {
-            toastr.info(response.status);
-        }).fail(function () {
-            alert('Невозможно отобразить');
-        });
-    });
-
     registration.photo.on('change', function () {
         fd.append('photo', $(this).prop('files')[0]);
         registration.filename.val( $(this).prop('files')[0].name);
@@ -492,10 +461,93 @@ $().ready(function () {
         });
     });
 
+    body.on('click', '[data-check]', function () {
+        id = $(this).data('check');
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        $.ajax({
+            url: '/home/check/' + id,
+            data:{id: id},
+            cache: false,
+            contentType: false,
+            processData: false,
+            dataType: 'JSON',
+        }).done(function (response) {
+            approved.find('[data-status]').text(response.status);
+            approved.find('#approvedParticipantImage').attr('src', '/images/approved/' + response.participant.directory + '/' + response.participant.photo);
+            approvedEditing.name.val(response.participant.name);
+            approvedEditing.phone.val(response.participant.phone);
+            approvedEditing.address.val(response.participant.address);
+            approvedEditing.email.val(response.participant.email);
+            approved.modal('show');
+        }).fail(function () {
+            alert('Невозможно отобразить');
+        });
+    });
+
+
+    approvedEditing.save.on('click', function () {
+        fd.append('id', id);
+        fd.append('name', approvedEditing.name.val());
+        fd.append('email', approvedEditing.email.val());
+        fd.append('address', approvedEditing.address.val());
+        fd.append('phone', approvedEditing.phone.val());
+
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        $.ajax({
+            url: '/home/save-approved',
+            type: 'POST',
+            data: fd,
+            cache: false,
+            contentType: false,
+            processData: false,
+            dataType: 'JSON',
+            success: function (response) {
+                if(response.success)
+                {
+                    toastr.success(response.success);
+                    approved.modal('hide');
+
+                }
+                if(response.error)
+                {
+                    toastr.error(response.error)
+                }
+            },
+            error: function(error) {
+                for(let err in error.responseJSON.errors ) {
+                    toastr.error(error.responseJSON.errors[err][0]);
+                }
+            }
+        });
+    });
+
+
     registration.modal.on('hidden.bs.modal', function () {
         registration.container.find('input').each(function () {
             $(this).val('');
         });
     });
 
+    rotate.rotate90.on('click', function () {
+        approved.find('#approvedParticipantImage').addClass('rotate90');
+    });
+    rotate.rotate180.on('click', function () {
+        approved.find('#approvedParticipantImage').addClass('rotate180');
+    });
+    rotate.rotate270.on('click', function () {
+        approved.find('#approvedParticipantImage').addClass('rotate270');
+    });
+    rotate.cancel.on('click', function () {
+        approved.find('#approvedParticipantImage').addClass('rotate360');
+    });
+
 });
+

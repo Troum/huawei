@@ -8,11 +8,6 @@
         <td>{{$value->number}}</td>
         <td>{{$value->created_at->format('d/m/Y')}}</td>
         <td>{{$value->moderator}}</td>
-        <td>
-            <button class="btn btn-sm btn-danger rounded-0">
-                Проверить отправку
-            </button>
-        </td>
     </tr>
 @endforeach
 <tr data-pagination>

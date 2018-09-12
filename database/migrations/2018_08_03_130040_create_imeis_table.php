@@ -15,8 +15,8 @@ class CreateImeisTable extends Migration
     {
         Schema::create('imeis', function (Blueprint $table) {
             $table->increments('id');
-            $table->longText('imei_one');
-            $table->longText('imei_two');
+            $table->string('imei_one', 191);
+            $table->string('imei_two', 191);
             $table->string('status')->default('active');
             $table->timestamps();
         });

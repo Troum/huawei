@@ -2,6 +2,17 @@ a, a:hover {
     text-decoration: underline
 }
 
+[data-partner] {
+    transition: .3s ease-in-out;
+}
+
+[data-partner]:hover {
+    -webkit-filter: drop-shadow(6px 6px 4px rgba(0,0,0,0.5));
+    filter: drop-shadow(6px 6px 4px rgba(0,0,0,0.5));
+    -ms-filter: progid:DXImageTransform.Microsoft.Shadow(color='#000000', Direction=135, Strength=6);
+    cursor: pointer;
+}
+
 #nav-tab *, #nav-tabContent *, a[aria-expanded], a[data-rules], a[data-rules]:hover {
     text-decoration: none !important
 }
@@ -295,7 +306,7 @@ input[type=checkbox], input[type=radio] {
     width: 32px;
     height: 32px;
     z-index: 0;
-    border: 2px solid #fff;
+    border: 1px solid #c8102e;
     -webkit-border-radius: 1px;
     border-radius: 1px;
     margin-top: 3px;

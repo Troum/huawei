@@ -39,3 +39,4 @@ Route::get('/home/find/{needle}', 'SearchController@search');
 
 Route::get('/home/edit/{edit}', 'EditController@edit');
 Route::post('/home/save-participant', 'EditController@save');
+Route::post('/home/save-approved', 'EditController@saveApproved');

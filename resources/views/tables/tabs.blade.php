@@ -35,8 +35,6 @@
                         <th>Игровой номер</th>
                         <th>Дата модерации</th>
                         <th>Модератор</th>
-                        <th>Проверить статус отправки</th>
-
                     </tr>
                     </thead>
                     <tbody id="approved-table-body">
